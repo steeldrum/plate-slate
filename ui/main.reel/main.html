@@ -1,22 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>Main</title>
-
-    <link rel="stylesheet" href="main.css">
-
-    <script type="text/montage-serialization">
-        {
-            "owner": {
-                "properties": {
-                    "element": {"#": "main"}
-                }
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"},
+                "mainContent": {"#": "mainContent"}
+            }
+        },
+        "categories": {
+            "prototype": "ui/categories.reel",
+            "properties": {
+                "element": {"#": "categories"}
+            },
+            "bindings": {
+                "categories": {"<-": "@owner.rottenTomato.categories"}
+            }
+        },
+        "details": {
+            "prototype": "ui/details.reel",
+            "properties": {
+                "element": {"#": "details"}
+            },
+            "bindings": {
+                "movie": {"<-": "@shopping.categoryContentController.selection.one()"}
+            }
+        },
+        "shopping": {
+            "prototype": "ui/shopping.reel",
+            "properties": {
+                "element": {"#": "shopping"},
+                "shoppingDetails": {"@": "details"}
+            },
+            "bindings": {
+                "categoryContentController": {"<-": "@owner.rottenTomato.categories.selection.one().contentController"}
             }
         }
-    </script>
-</head>
-<body>
-    <div data-montage-id="main" data-montage-skin="light" class="Main"></div>
-</body>
+    }
+        </script>
+    </head>
+    <body>
+        <div data-montage-id="owner" class="Main">
+            <img class="logo" src="../../assets/image/logo.png" alt="logo">
+            <div data-montage-id="categories"></div>
+            <div data-montage-id="mainContent" class="Main-content">
+                <div data-montage-id="shopping" class="Main-strip">
+
+                </div>
+                <div data-montage-id="details" class="Main-details"></div>
+            </div>
+            <a class="MontageMade" href="http://montagejs.org">
+                Made with Montage
+            </a>
+        </div>
+    </body>
 </html>
