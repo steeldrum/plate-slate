@@ -1,10 +1,10 @@
 
 var Component   = require("montage/ui/component").Component;
 
-exports.Moviestrip = Component.specialize({
+exports.Shopping = Component.specialize({
 
     constructor: {
-        value: function Moviestrip () {
+        value: function Shopping () {
             this.super();
         }
     },
@@ -12,7 +12,7 @@ exports.Moviestrip = Component.specialize({
     enterDocument: {
         value: function (firstTime) {
             if (firstTime) {
-                this.movieDetails.defineBinding(
+                this.shoppingDetails.defineBinding(
                     "classList.has('details-fade-out')",
                     {
                         "<-": "$self._detailsHidden",
@@ -58,8 +58,8 @@ exports.Moviestrip = Component.specialize({
             // wait .5s until the fade in/out effect is completed
             setTimeout( function () {
                 // reset the flow to initial scroll position
-                if (self.templateObjects && self.templateObjects.movieFlow) {
-                    self.templateObjects.movieFlow.scroll = 0;
+                if (self.templateObjects && self.templateObjects.shoppingFlow) {
+                    self.templateObjects.shoppingFlow.scroll = 0;
                 }
                 self._displayedContentController = self.categoryContentController;
                 self._flowHidden = false;
@@ -68,13 +68,13 @@ exports.Moviestrip = Component.specialize({
         }
     },
 
-    movieFlowDidTranslateStart: {
+    shoppingFlowDidTranslateStart: {
         value: function () {
             this._detailsHidden = true;
         }
     },
 
-    movieFlowDidTranslateEnd: {
+    shoppingFlowDidTranslateEnd: {
         value: function (flow) {
             var scroll = Math.round(flow.scroll);
             if(this._displayedContentController) {
